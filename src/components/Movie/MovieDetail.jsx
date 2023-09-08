@@ -121,7 +121,11 @@ export default function MovieDetail() {
                 </Text>
 
                 <Flex mt={"20px"} alignItems={"center"} gap={"5px"}>
-                  <CircularProgress value={80} color="green.400" size="80px">
+                  <CircularProgress
+                    value={movieData?.vote_average * 10}
+                    color="green.400"
+                    size="80px"
+                  >
                     <CircularProgressLabel fontWeight={500}>
                       {Math.floor(movieData?.vote_average * 10)}%
                     </CircularProgressLabel>

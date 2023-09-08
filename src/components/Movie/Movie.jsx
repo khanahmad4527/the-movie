@@ -103,7 +103,7 @@ const Movie = () => {
             >
               {moviesData &&
                 moviesData.map((movie, index) => {
-                  return <MovieCard key={index} {...movie} />;
+                  return <MovieCard key={index} index={index} movie={movie} isShowMenuIcon={true}/>;
                 })}
             </Grid>
           )}

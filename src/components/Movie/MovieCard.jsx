@@ -13,9 +13,19 @@ import {
 import React from "react";
 import { HiDotsCircleHorizontal } from "react-icons/hi";
 import { AiFillHeart, AiFillCloud } from "react-icons/ai";
+import { MdCancel } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-const MovieCard = (movie) => {
+const MovieCard = ({
+  movie,
+  index,
+  handleRemoveMovieFromWatchlistRerender,
+  isShowMenuIcon = false,
+  isShowDeleteIcon = false,
+  isRemoveFromWatchlist = false,
+  isRemoveFromFavourite = false,
+
+}) => {
   function formatDate(inputDate) {
     const options = { year: "numeric", month: "short", day: "numeric" };
     return new Date(inputDate).toLocaleDateString(undefined, options);
@@ -28,26 +38,77 @@ const MovieCard = (movie) => {
 
   const navigate = useNavigate();
 
+  const handleAddMovieToFavourite = () => {
+    const favouriteMovies =
+      JSON.parse(localStorage.getItem("favouriteMovies")) || [];
+    favouriteMovies.push(movie);
+    localStorage.setItem("favouriteMovies", JSON.stringify(favouriteMovies));
+    alert("Added selected movie to favourite list");
+  };
+
+  const handleAddMovieToWatchlist = () => {
+    const watchlistMovies =
+      JSON.parse(localStorage.getItem("watchlistMovies")) || [];
+    watchlistMovies.push(movie);
+    localStorage.setItem("watchlistMovies", JSON.stringify(watchlistMovies));
+    alert("Added selected movie to watchlist");
+  };
+
+  const handleRemoveMovie = () => {
+    if (isRemoveFromWatchlist) {
+      const watchlistMovies =
+        JSON.parse(localStorage.getItem("watchlistMovies")) || [];
+      watchlistMovies.splice(index, 1);
+      localStorage.setItem("watchlistMovies", JSON.stringify(watchlistMovies));
+      handleRemoveMovieFromWatchlistRerender(watchlistMovies);
+    }
+  };
+
   return (
     <Flex flexDirection={"column"} width={"max"} margin={"auto"}>
       <Box position={"relative"}>
-        <Menu>
-          <MenuButton
+        {isShowDeleteIcon && (
+          <Box
             position={"absolute"}
-            top={"0px"}
-            right={"0px"}
-            as={IconButton}
-            aria-label="Options"
-            icon={<HiDotsCircleHorizontal size="25px" />}
-            variant="none"
-            color={"white"}
-            _hover={{ color: "gray" }}
-          />
-          <MenuList>
-            <MenuItem icon={<AiFillHeart />}>Favourite</MenuItem>
-            <MenuItem icon={<AiFillCloud />}>Watchlist</MenuItem>
-          </MenuList>
-        </Menu>
+            top={"10px"}
+            right={"10px"}
+            cursor={"pointer"}
+            color="red"
+            onClick={handleRemoveMovie}
+          >
+            <MdCancel size="20px" />
+          </Box>
+        )}
+
+        {isShowMenuIcon && (
+          <Menu>
+            <MenuButton
+              position={"absolute"}
+              top={"0px"}
+              right={"0px"}
+              as={IconButton}
+              aria-label="Options"
+              icon={<HiDotsCircleHorizontal size="25px" />}
+              variant="none"
+              color={"white"}
+              _hover={{ color: "gray" }}
+            />
+            <MenuList>
+              <MenuItem
+                icon={<AiFillHeart />}
+                onClick={handleAddMovieToFavourite}
+              >
+                Favourite
+              </MenuItem>
+              <MenuItem
+                icon={<AiFillCloud />}
+                onClick={handleAddMovieToWatchlist}
+              >
+                Watchlist
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        )}
 
         <Image
           height={"220px"}
