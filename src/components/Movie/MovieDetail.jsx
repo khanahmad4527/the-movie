@@ -14,6 +14,8 @@ import {
   VisuallyHidden,
   List,
   ListItem,
+  CircularProgress,
+  CircularProgressLabel,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -49,15 +51,34 @@ export default function MovieDetail() {
     }
   }, [id]);
 
+  //function to convert date into readable format
   function formatDate(inputDate) {
     const options = { year: "numeric", month: "short", day: "numeric" };
     return new Date(inputDate).toLocaleDateString(undefined, options);
   }
   const formattedDate = formatDate(movieData?.release_date);
 
+  // code to get image URL
   const baseImageUrl = "https://image.tmdb.org/t/p/";
   const posterSize = "original";
   const posterUrl = `${baseImageUrl}${posterSize}${movieData?.poster_path}`;
+
+  //function to convert in to millions
+  function convertToMillions(number) {
+    return (number / 1_000_000).toFixed(2) + "M";
+  }
+  const numberInMillions = convertToMillions(movieData?.budget);
+
+  //function to convert runtime into readable format
+  function minutesToHoursAndMinutes(minutes) {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    const hoursText = hours > 0 ? `${hours}h` : "";
+    const minutesText = remainingMinutes > 0 ? `${remainingMinutes}m` : "";
+
+    return `${hoursText} ${minutesText}`.trim();
+  }
+  const formattedDuration = minutesToHoursAndMinutes(movieData?.runtime);
 
   console.log(movieData);
 
@@ -98,6 +119,17 @@ export default function MovieDetail() {
                 <Text color="gray.900" fontWeight={300} fontSize={"2xl"}>
                   Release Date: {formattedDate}
                 </Text>
+
+                <Flex mt={"20px"} alignItems={"center"} gap={"5px"}>
+                  <CircularProgress value={80} color="green.400" size="80px">
+                    <CircularProgressLabel fontWeight={500}>
+                      {Math.floor(movieData?.vote_average * 10)}%
+                    </CircularProgressLabel>
+                  </CircularProgress>
+                  <Text fontSize={"20px"} fontWeight={500}>
+                    User Score
+                  </Text>
+                </Flex>
               </Box>
 
               <Stack
@@ -125,7 +157,7 @@ export default function MovieDetail() {
                       <Text as={"span"} fontWeight={"bold"}>
                         Budget:
                       </Text>{" "}
-                      {movieData?.budget}
+                      {numberInMillions}
                     </ListItem>
                     <ListItem>
                       <Text as={"span"} fontWeight={"bold"}>
@@ -137,13 +169,13 @@ export default function MovieDetail() {
                       <Text as={"span"} fontWeight={"bold"}>
                         Release Date:
                       </Text>{" "}
-                      {movieData?.release_date}
+                      {formattedDate}
                     </ListItem>
                     <ListItem>
                       <Text as={"span"} fontWeight={"bold"}>
                         Runtime:
                       </Text>{" "}
-                      {movieData?.runtime}
+                      {formattedDuration}
                     </ListItem>
                     <ListItem>
                       <Text as={"span"} fontWeight={"bold"}>
