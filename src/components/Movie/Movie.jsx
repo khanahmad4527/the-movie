@@ -15,9 +15,12 @@ import axios from "axios";
 import Footer from "../Footer/Footer";
 import MovieCard from "./MovieCard";
 import LogoutButton from "../Auth/LogoutButton";
+import Pagination from "./Pagination";
 
 const Movie = () => {
   const [moviesData, setMoviesData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(100);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -25,8 +28,9 @@ const Movie = () => {
     try {
       setLoading(true);
       const data = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB}&language=en-US&sort_by=popularity.desc&include_adult=false&page=1`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB}&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}`
       );
+      setTotalResults(data?.data?.total_results);
       setMoviesData(data?.data?.results);
       setLoading(false);
     } catch (error) {
@@ -37,13 +41,17 @@ const Movie = () => {
 
   useEffect(() => {
     loadMoviesData();
-  }, []);
+  }, [page]);
 
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = () => {
     // Handle the search logic here, e.g., perform an API search.
     console.log(`Searching for: ${searchQuery}`);
+  };
+
+  const paginate = (value) => {
+    setPage(Number(value));
   };
 
   return (
@@ -103,11 +111,26 @@ const Movie = () => {
             >
               {moviesData &&
                 moviesData.map((movie, index) => {
-                  return <MovieCard key={index} index={index} movie={movie} isShowMenuIcon={true}/>;
+                  return (
+                    <MovieCard
+                      key={index}
+                      index={index}
+                      movie={movie}
+                      isShowMenuIcon={true}
+                    />
+                  );
                 })}
             </Grid>
           )}
         </Box>
+
+        <Pagination
+          onChange={paginate}
+          totalCount={totalResults}
+          currentPage={page}
+          pageSize={20}
+          onPageChange={paginate}
+        />
       </Box>
       <Footer />
     </>

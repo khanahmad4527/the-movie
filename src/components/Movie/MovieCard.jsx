@@ -20,11 +20,11 @@ const MovieCard = ({
   movie,
   index,
   handleRemoveMovieFromWatchlistRerender,
+  handleRemoveMovieFromFavouriteRerender,
   isShowMenuIcon = false,
   isShowDeleteIcon = false,
   isRemoveFromWatchlist = false,
   isRemoveFromFavourite = false,
-
 }) => {
   function formatDate(inputDate) {
     const options = { year: "numeric", month: "short", day: "numeric" };
@@ -61,6 +61,14 @@ const MovieCard = ({
       watchlistMovies.splice(index, 1);
       localStorage.setItem("watchlistMovies", JSON.stringify(watchlistMovies));
       handleRemoveMovieFromWatchlistRerender(watchlistMovies);
+    }
+
+    if (isRemoveFromFavourite) {
+      const favouriteMovies =
+        JSON.parse(localStorage.getItem("favouriteMovies")) || [];
+      favouriteMovies.splice(index, 1);
+      localStorage.setItem("favouriteMovies", JSON.stringify(favouriteMovies));
+      handleRemoveMovieFromFavouriteRerender(favouriteMovies);
     }
   };
 
