@@ -80,8 +80,6 @@ export default function MovieDetail() {
   }
   const formattedDuration = minutesToHoursAndMinutes(movieData?.runtime);
 
-  console.log(movieData);
-
   return (
     <>
       <LogoutButton />
