@@ -1,6 +1,5 @@
 import {
   Box,
-  chakra,
   Container,
   Stack,
   Text,
@@ -11,7 +10,6 @@ import {
   Heading,
   SimpleGrid,
   StackDivider,
-  VisuallyHidden,
   List,
   ListItem,
   CircularProgress,
@@ -19,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { MdLocalShipping } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import LogoutButton from "../Auth/LogoutButton";

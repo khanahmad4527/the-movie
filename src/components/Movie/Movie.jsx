@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { UserAuth } from "../../hoc/AuthContext";
 import {
   Box,
   Button,
@@ -11,29 +10,16 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Stack,
   Text,
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  AccordionButton,
-  AccordionIcon,
-  Accordion,
-  AccordionItem,
-  AccordionPanel,
-  Select,
 } from "@chakra-ui/react";
 import axios from "axios";
 import Footer from "../Footer/Footer";
 import MovieCard from "./MovieCard";
 import LogoutButton from "../Auth/LogoutButton";
 import Pagination from "./Pagination";
-import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 
 const Movie = () => {
   const [moviesData, setMoviesData] = useState([]);
