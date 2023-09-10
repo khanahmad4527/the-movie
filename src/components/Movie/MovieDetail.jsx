@@ -14,6 +14,7 @@ import {
   ListItem,
   CircularProgress,
   CircularProgressLabel,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -23,6 +24,7 @@ import LogoutButton from "../Auth/LogoutButton";
 
 export default function MovieDetail() {
   const { id } = useParams();
+  const toast = useToast();
 
   const [movieData, setMovieData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -205,7 +207,15 @@ export default function MovieDetail() {
                   transform: "translateY(2px)",
                   boxShadow: "lg",
                 }}
-                onClick={() => alert("Movie is Playing")}
+                onClick={() =>
+                  toast({
+                    title: "Movie is playing",
+                    status: "success",
+                    position: "top",
+                    duration: 2000,
+                    isClosable: true,
+                  })
+                }
               >
                 Play Now
               </Button>

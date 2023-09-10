@@ -61,7 +61,9 @@ const Favourites = () => {
               gap={6}
               padding={"10px"}
             >
-              {moviesData &&
+              {moviesData && moviesData.length === 0 ? (
+                <Heading>Empty favourite</Heading>
+              ) : (
                 moviesData.map((movie, index) => {
                   return (
                     <MovieCard
@@ -75,7 +77,8 @@ const Favourites = () => {
                       }
                     />
                   );
-                })}
+                })
+              )}
             </Grid>
           )}
         </Box>

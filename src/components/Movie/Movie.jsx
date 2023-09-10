@@ -182,7 +182,9 @@ const Movie = () => {
               gap={6}
               padding={"10px"}
             >
-              {moviesData &&
+              {moviesData && moviesData.length === 0 ? (
+                <Heading>No data found..</Heading>
+              ) : (
                 moviesData.map((movie, index) => {
                   return (
                     <MovieCard
@@ -192,7 +194,8 @@ const Movie = () => {
                       isShowMenuIcon={true}
                     />
                   );
-                })}
+                })
+              )}
             </Grid>
           )}
         </Box>

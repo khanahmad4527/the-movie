@@ -9,6 +9,7 @@ import {
   MenuList,
   MenuItem,
   IconButton,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import { HiDotsCircleHorizontal } from "react-icons/hi";
@@ -37,13 +38,21 @@ const MovieCard = ({
   const posterUrl = `${baseImageUrl}${posterSize}${movie?.poster_path}`;
 
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleAddMovieToFavourite = () => {
     const favouriteMovies =
       JSON.parse(localStorage.getItem("favouriteMovies")) || [];
     favouriteMovies.push(movie);
     localStorage.setItem("favouriteMovies", JSON.stringify(favouriteMovies));
-    alert("Added selected movie to favourite list");
+    toast({
+      title: "Added movie",
+      description: "Added selected movie to favourite list",
+      position: "top",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
   };
 
   const handleAddMovieToWatchlist = () => {
@@ -51,7 +60,14 @@ const MovieCard = ({
       JSON.parse(localStorage.getItem("watchlistMovies")) || [];
     watchlistMovies.push(movie);
     localStorage.setItem("watchlistMovies", JSON.stringify(watchlistMovies));
-    alert("Added selected movie to watchlist");
+    toast({
+      title: "Added movie",
+      description: "Added selected movie to watchlist",
+      position: "top",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
   };
 
   const handleRemoveMovie = () => {
