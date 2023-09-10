@@ -8,10 +8,8 @@ This web application allows users to browse and discover movies, log in with Fir
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Demo](#demo)
-- [Disclaimer](#disclaimer)
 
 
 ## Description
