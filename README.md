@@ -8,6 +8,7 @@ This web application allows users to browse and discover movies, log in with Fir
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Installation](#installation)
+- [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Demo](#demo)
 
@@ -73,6 +74,38 @@ npm install
 npm run start
 ```
 
+## Usage
+
+1. **Log In**: Launch the app, and you will be prompted to log in with your Google account using Firebase authentication.
+
+2. **Navigation**: Navigate through the app using the bottom navigation bar to access three main screens:
+
+   - **Movies**: Browse and discover movies.
+   - **Favourites**: Manage your list of favorite movies.
+   - **Watchlist**: Create and manage a watchlist of movies to watch later.
+
+3. **Movies Screen**: On the Movies screen, you can:
+
+   - **Browse Movies**: Explore a wide selection of movies.
+   - **Search for Movies**: Use the search feature to find specific movies.
+   - **Manage Lists**: Add movies to your Favourites or Watchlist.
+
+4. **View Movie Details**: Click on a movie to view its details, including:
+
+   - Movie Banner
+   - Name
+   - Overview/Description
+   - Release Date
+   - Genre
+   - User ratings/Score (displayed as a Circular Progress Bar)
+
+5. **Play Now**: On the movie details screen, click "Play Now" to receive an in-app notification.
+
+6. **Manage Lists**: In the Favourites and Watchlist screens, you can manage your lists by adding or removing movies as needed.
+
+7. **Log Out**: To log out of the app, click on the "Logout" option.
+
+
 ## Screenshots
 
 <div align="center">
@@ -86,18 +119,13 @@ npm run start
 </div>
 
 <div align="center">
-  <h3>Movie Detail Page</h3>
-  <img src="https://res.cloudinary.com/dalqx198y/image/upload/v1694351569/Screenshot_468_rkg870.png" width="500">
+  <h3>Calorie Page</h3>
+  <img src="https://res.cloudinary.com/dalqx198y/image/upload/v1694352725/Screenshot_475_x7hwdr.png" width="500">
 </div>
 
 <div align="center">
-  <h3>Watchlist page</h3>
-  <img src="https://res.cloudinary.com/dalqx198y/image/upload/v1694351367/Screenshot_466_pwlpam.png" width="500">
-</div>
-
-<div align="center">
-  <h3>Favourite page</h3>
-  <img src="https://res.cloudinary.com/dalqx198y/image/upload/v1694351367/Screenshot_465_d6dw0f.png" width="500">
+  <h3>Diet page</h3>
+  <img src="https://res.cloudinary.com/dalqx198y/image/upload/v1694352727/Screenshot_476_uxeolr.png" width="500">
 </div>
 
 ## Demo
