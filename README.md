@@ -119,13 +119,13 @@ npm run start
 </div>
 
 <div align="center">
-  <h3>Calorie Page</h3>
-  <img src="https://res.cloudinary.com/dalqx198y/image/upload/v1694352725/Screenshot_475_x7hwdr.png" width="500">
+  <h3>Watchlist page</h3>
+  <img src="https://res.cloudinary.com/dalqx198y/image/upload/v1694351367/Screenshot_466_pwlpam.png" width="500">
 </div>
 
 <div align="center">
-  <h3>Diet page</h3>
-  <img src="https://res.cloudinary.com/dalqx198y/image/upload/v1694352727/Screenshot_476_uxeolr.png" width="500">
+  <h3>Favourite page</h3>
+  <img src="https://res.cloudinary.com/dalqx198y/image/upload/v1694351367/Screenshot_465_d6dw0f.png" width="500">
 </div>
 
 ## Demo
